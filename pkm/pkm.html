@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <haed>
+        <link rel="stylesheet" href="style.css" >
+    </haed>
+    <body>
+        <div class="pozadina-kruga">
+            <form>
+                <a id="papir" onclick="papir()"><img draggable="false" class="papir krug" src="papir.png"></a>
+                <a id="kamen" onclick="kamen()"><img draggable="false" class="kamen krug" src="kamen.png"></a>
+                <a id="makaze" onclick="makaze()"><img draggable="false" class="makaze krug" src="makaze.png"></a>
+                <a class="tekst" id="label">Zapocnite igru!</a><br><br>
+                <a class="tekst" id="skor">Skor: 0</a>
+                <a class="tekst" id="partije" style="margin-left: 30px;">Broj partija: 0</a>
+                <a class="tekst" id="tajmer" style="margin-left: 30px;">Tajmer: 0</a><br>
+                <a class="dugme" id="start" onclick="startGame()">Start</a>
+                <a class="dugme" id="restart" style="margin-left: 30px;" onclick="restart()">Restart</a>
+            </form>
+        </div>
+    
+    
+    <script>
+        var papirP = document.getElementById("papir");
+        var kamenK = document.getElementById("kamen");
+        var makazeM = document.getElementById("makaze");
+        var labelL = document.getElementById("label");
+        var skorS = document.getElementById("skor");
+        var partijeP = document.getElementById("partije");
+        var tajmerT = document.getElementById("tajmer");
+        var startS = document.getElementById("start");
+        var restartR= document.getElementById("restart");
+        
+        var i = 0;
+        var p = 0;      
+        var t = 60;
+        
+                    papirP.style.display = "none";
+                    kamenK.style.display = "none";
+                    makazeM.style.display = "none";
+                    skorS.style.display = "none";
+                    partijeP.style.display = "none";
+                    tajmerT.style.display = "none";
+                    restartR.style.display="none";
+        
+
+        /*PRIKAZ SVIH ELEMENATA NA EKRANU*/        
+        function startGame(){
+                    papirP.style.display = "inline";
+                    kamenK.style.display = "inline";
+                    makazeM.style.display = "inline";
+                    skorS.style.display = "inline";
+                    partijeP.style.display = "inline";
+                    tajmerT.style.display = "inline";
+                    
+                    startS.style.display = "none";
+            
+                    brojac();
+        }
+        
+        /*ZAPOCINJANJE TAJMERA*/
+        function brojac() {           
+            t--;
+            document.getElementById("tajmer").innerHTML = "Tajmer: " + t;
+            if(t < 11 && t > 5){
+                tajmerT.style.color = "#cc8500";
+            } else if(t < 6 && t > 0){
+                tajmerT.style.color = "#cc0000";
+            } else{
+                tajmerT.style.color ="#d9d9d9";
+            }
+            if( t > 0 ){
+                
+                setTimeout( brojac, 1000 );
+                } /*NAKON STO SE TAJMER ZAVRSI OVO SE DESAVA*/
+                    else{
+                    document.getElementById("tajmer").innerHTML = "Vreme je isteklo!<br>";
+                    papirP.style.display = "none";
+                    kamenK.style.display = "none";
+                    makazeM.style.display = "none";
+                    labelL.style.display = "none";
+                    skorS.style.display = "none";
+                    partijeP.style.display = "none";
+                    
+                    restartR.style.display="inline";
+
+                }
+            }
+        
+        /*ZAPOCINJANJE NOVE RUNDE*/
+        function restart(){
+                    papirP.style.display = "inline";
+                    kamenK.style.display = "inline";
+                    makazeM.style.display = "inline";
+                    skorS.style.display = "inline";
+                    partijeP.style.display = "inline";
+                    tajmerT.style.display = "inline";
+            
+                    restartR.style.display="none";  
+            
+                    i=0;
+                    p=0;  
+                    t=60;
+            
+                    document.getElementById("skor").innerHTML = "Skor: 0";
+                    document.getElementById("partije").innerHTML = "Partije: 0";
+            
+                    brojac();
+        }
+ 
+        
+        /*ODABIR PAPIRA*/        
+        function papir(){
+                    var protivnik = Math.floor(Math.random() * 3) + 1;
+            
+                    if(protivnik == 1){
+                        document.getElementById("label").innerHTML = "Nereseno je! Protivnik je izabrao papir.";
+                        p++;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 2){
+                        document.getElementById("label").innerHTML = "Pobedili ste! Protivnik je izabrao kamen.";
+                        i++;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 3){
+                        document.getElementById("label").innerHTML = "Izgubili ste! Protivnik je izabrao makaze.";
+                        i--;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+ 
+                    }
+                        if(i == -1){
+                            i++;
+                            p++;
+                            document.getElementById("skor").innerHTML = "Skor: " + i;
+                            document.getElementById("partije").innerHTML = "Partije: " + p;
+                        }
+        }
+        
+        /*ODABIR KAMENA*/
+        function kamen(){   
+                    var protivnik = Math.floor(Math.random() * 3) + 1;
+            
+                    if(protivnik == 1){
+                        document.getElementById("label").innerHTML = "Izgubili ste! Protivnik je izabrao papir.";
+                        i--;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 2){
+                        document.getElementById("label").innerHTML = "Nereseno je! Protivnik je izabrao kamen.";
+                        p++;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 3){
+                        document.getElementById("label").innerHTML = "Pobedili ste! Protivnik je izabrao makaze.";
+                        i++;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                        if(i == -1){
+                            i++;
+                            p++;
+                            document.getElementById("skor").innerHTML = "Skor: " + i;
+                            document.getElementById("partije").innerHTML = "Partije: " + p;
+                        }
+        }
+        
+        /*ODABIR MAKAZA*/ 
+        function makaze(){  
+                    var protivnik = Math.floor(Math.random() * 3) + 1;
+            
+                    if(protivnik == 1){
+                        document.getElementById("label").innerHTML = "Pobedili ste! Protivnik je izabrao papir.";
+                        i++;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 2){
+                        document.getElementById("label").innerHTML = "Izgubili ste! Protivnik je izabrao kamen.";
+                        i--;
+                        p++;
+                        document.getElementById("skor").innerHTML = "Skor: " + i;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                    else if(protivnik == 3){
+                        document.getElementById("label").innerHTML = "Nereseno je! Protivnik je izabrao makaze.";
+                        p++;
+                        document.getElementById("partije").innerHTML = "Partije: " + p;
+                        
+                    }
+                        if(i == -1){
+                            i++;
+                            document.getElementById("skor").innerHTML = "Skor: " + i;
+                        }
+        }        
+        
+
+        </script>
+    </body>
+</html>

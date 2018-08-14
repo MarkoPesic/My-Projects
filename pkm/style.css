@@ -1,0 +1,78 @@
+body{
+    background-image: url(pozadina_igra.jpg);
+    font-family: arial, sans-serif;
+    text-align: center;
+}
+.krug{
+  border-radius:50%;
+  background-color:#3a1b13;
+  box-shadow:0px 0px 50px 4px #000000 inset;
+  border:2px solid #130906;
+  transition: background-color 3s ease;
+  margin-bottom: 20px;
+}
+.krug:hover{
+  transform: rotate(-360deg);
+  transition: transform 2s;
+  -webkit-transition: -webkit-transform 2s;
+  background:linear-gradient(#743525 ,#602c1f);
+}
+
+.dugme{
+font-size:20;
+font-family:Verdana;
+background-color:#602c1f;
+box-shadow:0px 0px 25px 2px #0c0e0e inset;
+color:#27120c;
+border-radius:30px;
+border:0;
+transition: background .3s ease-in,color .3s ease-in;
+border:1px solid #130906;
+font-weight: bold;
+padding: 10px 60px;
+margin-top:10px;
+}
+.dugme:hover{
+background-color:#743525;
+color:3a1b13;
+}
+
+.pozadina-kruga{
+width:810px;
+height: 300px;
+padding:40px;
+margin:auto;
+margin-top: 200px;
+border-radius:15px;
+display:flex;
+background:linear-gradient(#27120c,#27120c);
+box-shadow:0px 0px 40px 8px #0c0e0e inset;
+border:30px solid transparent;
+border-image: url(okvir.png) 30 round;
+text-align: center;
+justify-content: center;
+align-items: center;
+}
+
+
+.papir,
+.kamen,
+.makaze{
+margin-left: 10px;
+}
+.tekst{
+    color: #d9d9d9;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+.textbox{
+text-align:center;
+border-radius:10px;
+border:0;
+font-size:130%;
+background:linear-gradient(Gainsboro,#CDC5BF);
+color:#4d4d4d;
+box-shadow:0px 0px 10px 1px #0c0e0e inset;
+border:1px solid #130906;
+}
